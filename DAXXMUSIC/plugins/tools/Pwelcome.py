@@ -157,7 +157,7 @@ InlineKeyboardButton(f"๏ ᴏᴡɴᴇʀ !",
 url=f"https://t.me/PAWAN_IS_BACK"),
 ]
 ]
-)
+))
         
     except Exception as e:
         LOGGER.error(e)
