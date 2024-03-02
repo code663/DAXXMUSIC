@@ -84,7 +84,6 @@ async def _greet(_, message):
 
 @app.on_chat_member_updated(filters.group, group=20)
 async def member_has_left(client: app, member: ChatMemberUpdated):
-
     if (
         not member.new_chat_member
         and member.old_chat_member.status not in {
@@ -102,25 +101,21 @@ async def member_has_left(client: app, member: ChatMemberUpdated):
         else member.from_user
     )
 
+    caption = f"**ᴀ ᴍᴇᴍʙᴇʀ ʟᴇғᴛ ғʀᴏᴍ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🥹\n\n✧══════•❁❀❁•══════✧\n╠╼➪ ✨ 𝐍𝐀𝐌𝐄 = {user.mention}\n╠╼➪ 💫 𝐔𝐒𝐄𝐑 𝐈𝐃 = {user.id}\n╠╼➪  🎁 𝐔𝐒𝐄𝐑𝐍𝐀𝐌𝐄 = @{user.username}\n✧══════•❁❀❁•══════✧\n\n๏sᴇᴇ ʏᴏᴜ sᴏᴏɴ ᴀɢᴀɪɴ..!**"
+    button_text = " Kɪᴅɴᴀᴘ ᴍᴇ 🥹 "
+    deep_link = f"https://t.me/{app.username}?startgroup=true"
 
-            caption = f"**ᴀ ᴍᴇᴍʙᴇʀ ʟᴇғᴛ ғʀᴏᴍ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🥹\n\n✧══════•❁❀❁•══════✧\n╠╼➪ ✨ 𝐍𝐀𝐌𝐄 = {user.mention}\n╠╼➪ 💫 𝐔𝐒𝐄𝐑 𝐈𝐃 = {user.id}\n╠╼➪  🎁 𝐔𝐒𝐄𝐑𝐍𝐀𝐌𝐄 = @{user.username}\n✧══════•❁❀❁•══════✧\n\n๏sᴇᴇ ʏᴏᴜ sᴏᴏɴ ᴀɢᴀɪɴ..!**"
-            button_text = " Kɪᴅɴᴀᴘ ᴍᴇ 🥹 "
+    try:
+        await client.send_photo(
+            chat_id=member.chat.id,
+            photo=random.choice(photo),
+            caption=caption,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(button_text, url=deep_link)]
+            ])
+        )
 
-            
-            deep_link = f"https://t.me/{app.username}?startgroup=true"
-
-            
-            await client.send_photo(
-                chat_id=member.chat.id,
-                photo=random.choice(photo),
-                caption=caption,
-                reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton(button_text, url=deep_link)]
-                ])
-)
-
-        except RPCError as e:
-            print(e)
-            return
-    
-
+    except RPCError as e:
+        print(e)
+        return
+        
