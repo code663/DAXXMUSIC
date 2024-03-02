@@ -135,7 +135,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
 
  ❅𝐍𝐚𝐦𝐞 ➳  {user.mention}
- ❅𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞 ➳ user.username}
+ ❅𝐔𝐬𝐞𝐫 𝐍𝐚𝐦𝐞 ➳ {user.username}
  ❅𝐔𝐬𝐞𝐫 𝐈𝐝  ➳ {user.id}
 
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
@@ -148,9 +148,8 @@ async def greet_group(_, member: ChatMemberUpdated):
 
         ⇆  ◁ㅤㅤ❚❚ㅤㅤ▷  ↻
 •┈┈┈••┈┈┈••••●••••┈┈┈••┈┈┈•
-,
 **
-"""
+""",
 reply_markup=InlineKeyboardMarkup(
 [
 [InlineKeyboardButton(f"๏ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ!", url=f"https://t.me/LOVER_X_MUSIC_BOT?startgroup=true"),
