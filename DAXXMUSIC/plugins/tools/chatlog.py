@@ -4,6 +4,7 @@ from pyrogram.types import Message
 from pyrogram.errors import RPCError
 from typing import Union, Optional
 from pyrogram import filters
+from pyrogram.types import ChatMemberUpdated, InlineKeyboardMarkup, InlineKeyboardButton
 from os import environ
 from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, Message)
 from config import LOGGER_ID as LOG_GROUP_ID
