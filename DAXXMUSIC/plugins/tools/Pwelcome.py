@@ -148,6 +148,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 
         ⇆  ◁ㅤㅤ❚❚ㅤㅤ▷  ↻
 •┈┈┈••┈┈┈••••●••••┈┈┈••┈┈┈•
+,
 **
 """
 reply_markup=InlineKeyboardMarkup(
