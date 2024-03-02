@@ -129,7 +129,7 @@ async def greet_group(_, member: ChatMemberUpdated):
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
      
        ╔═══ஜ۩۞۩ஜ═══╗
-          { member.chat.title}
+          {member.chat.title}
        ╚═══ஜ۩۞۩ஜ═══╝  
      
 ▰▰▰▰▰▰▰▰▰▰▰▰▰
