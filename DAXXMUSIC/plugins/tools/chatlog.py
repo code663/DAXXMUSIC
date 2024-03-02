@@ -1,7 +1,10 @@
 import random
 from pyrogram import Client
 from pyrogram.types import Message
+from pyrogram.errors import RPCError
+from typing import Union, Optional
 from pyrogram import filters
+from os import environ
 from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, Message)
 from config import LOGGER_ID as LOG_GROUP_ID
 from DAXXMUSIC import app  
@@ -76,4 +79,47 @@ async def _greet(_, message):
             await app.send_photo(message.chat.id, photo=random.choice(photo), caption=msg, reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton(f"↻ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ↻", url=f"https://t.me/{app.username}?startgroup=true")]
          ]))
-        
+
+
+@app.on_chat_member_updated(filters.group, group=20)
+async def member_has_left(client: app, member: ChatMemberUpdated):
+
+    if (
+        not member.new_chat_member
+        and member.old_chat_member.status not in {
+            "banned", "left", "restricted"
+        }
+        and member.old_chat_member
+    ):
+        pass
+    else:
+        return
+
+    user = (
+        member.old_chat_member.user
+        if member.old_chat_member
+        else member.from_user
+    )
+
+
+            caption = f"**ᴀ ᴍᴇᴍʙᴇʀ ʟᴇғᴛ ғʀᴏᴍ ʏᴏᴜʀ ɢʀᴏᴜᴘ 🥹\n\n✧══════•❁❀❁•══════✧\n╠╼➪ ✨ 𝐍𝐀𝐌𝐄 = {user.mention}\n╠╼➪ 💫 𝐔𝐒𝐄𝐑 𝐈𝐃 = {user.id}\n╠╼➪  🎁 𝐔𝐒𝐄𝐑𝐍𝐀𝐌𝐄 = @{user.username}\n✧══════•❁❀❁•══════✧\n\n๏sᴇᴇ ʏᴏᴜ sᴏᴏɴ ᴀɢᴀɪɴ..!**"
+            button_text = " Kɪᴅɴᴀᴘ ᴍᴇ 🥹 "
+
+            
+            deep_link = f"https://t.me/{app.username}?startgroup=true"
+
+            
+            await client.send_photo(
+                chat_id=member.chat.id,
+                photo=random.choice(photo),
+                caption=caption,
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton(button_text, url=deep_link)]
+                ])
+)
+
+        except RPCError as e:
+            print(e)
+            return
+    
+
