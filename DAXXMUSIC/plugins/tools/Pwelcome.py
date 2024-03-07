@@ -58,36 +58,50 @@ def welcomepic(pic, user, chat, id, uname):
     )
     return f"downloads/welcome#{id}.png"
 
+SPECIAL_WELCOME_USER_IDS = {6761639198, 6329937391}
+
 @app.on_message(filters.command("wel", COMMAND_HANDLER) & ~filters.private)
 async def auto_state(_, message):
     usage = "**Usage:**\n/wel [ENABLE|DISABLE]"
     if len(message.command) == 1:
         return await message.reply_text(usage)
+    
     chat_id = message.chat.id
-    user = await app.get_chat_member(message.chat.id, message.from_user.id)
-    if user.status in (
-        enums.ChatMemberStatus.ADMINISTRATOR,
-        enums.ChatMemberStatus.OWNER,
-    ):
-      A = await wlcm.find_one({"chat_id" : chat_id})
-      state = message.text.split(None, 1)[1].strip()
-      state = state.lower()
-      if state == "enable":
-        if A:
-           return await message.reply_text("Special Welcome Already Enabled")
-        elif not A:
-           await add_wlcm(chat_id)
-           await message.reply_text(f"Enabled Special Welcome in {message.chat.title}")
-      elif state == "disable":
-        if not A:
-           return await message.reply_text("Special Welcome Already Disabled")
-        elif A:
-           await rm_wlcm(chat_id)
-           await message.reply_text(f"Disabled Special Welcome in {message.chat.title}")
-      else:
-        await message.reply_text(usage)
+    user_id = message.from_user.id
+    
+    if user_id in SPECIAL_WELCOME_USER_IDS:
+        state = message.text.split(None, 1)[1].strip().lower()
+        if state == "enable":
+            await add_wlcm(chat_id)
+            await message.reply_text(f"Enabled Special Welcome in {message.chat.title}")
+        elif state == "disable":
+            await rm_wlcm(chat_id)
+            await message.reply_text(f"Disabled Special Welcome in {message.chat.title}")
+        else:
+            await message.reply_text(usage)
+    
     else:
-        await message.reply("Only Admins Can Use This Command")
+        user = await app.get_chat_member(chat_id, user_id)
+        if user.status in (enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER):
+            A = await wlcm.find_one({"chat_id": chat_id})
+            state = message.text.split(None, 1)[1].strip().lower()
+            if state == "enable":
+                if A:
+                    return await message.reply_text("Special Welcome Already Enabled")
+                else:
+                    await add_wlcm(chat_id)
+                    await message.reply_text(f"Enabled Special Welcome in {message.chat.title}")
+            elif state == "disable":
+                if not A:
+                    return await message.reply_text("Special Welcome Already Disabled")
+                else:
+                    await rm_wlcm(chat_id)
+                    await message.reply_text(f"Disabled Special Welcome in {message.chat.title}")
+            else:
+                await message.reply_text(usage)
+        else:
+            await message.reply("Only Admins Can Use This Command")
+
 
 #bhag 
 
