@@ -179,7 +179,7 @@ class Call(PyTgCalls):
                     stdin=asyncio.subprocess.PIPE,
                     stderr=asyncio.subprocess.PIPE,
                 )
-                await proc.communicate()
+                await proc.stdin.drain()
             else:
                 pass
         else:
