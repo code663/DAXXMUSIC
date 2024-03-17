@@ -7,6 +7,18 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
+from DAXXMUSIC.misc import _boot_
+from DAXXMUSIC.plugins.sudo.sudoers import sudoers_list
+from DAXXMUSIC.utils.database import get_served_chats, get_served_users, get_sudoers
+from DAXXMUSIC.utils import bot_sys_stats
+from DAXXMUSIC.utils.database import (
+    add_served_chat,
+    add_served_user,
+    blacklisted_chats,
+    get_lang,
+    is_banned_user,
+    is_on_off,
+)
 from pyrogram.types import InputMediaVideo
 from DAXXMUSIC import app
 import random
