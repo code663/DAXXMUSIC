@@ -19,7 +19,7 @@ BOT_USERNAME = getenv("BOT_USERNAME", "LOVER_X_MUSIC_BOT")
 BOT_NAME = getenv("BOT_NAME", "LOVER MUSIC")
 #get Your Assistant User name
 ASSUSERNAME = getenv("ASSUSERNAME", "LOVER_ASS")
-EVALOP = list(map(int, getenv("EVALOP", "6178528303").split()))
+EVALOP = list(map(int, getenv("EVALOP", "6761639198").split()))
 # Get your mongo url from cloud.mongodb.com
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://sanasomani786:TJgADfpkI1XVUkKt@cluster0.ruhyad9.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp")
 
