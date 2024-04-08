@@ -130,5 +130,4 @@ async def ctest(_, message):
     except Exception:
        pass
 
-#made by shalini 
-# @Itz_SHALINI
+
